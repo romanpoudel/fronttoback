@@ -11,8 +11,28 @@
     text-decoration: underline;
 }
 
-.delete{
+.delete ,.edit{
     background-color:transparent;
      color: #fff;
     border: none; 
+}
+.modInput{
+    display:flex;
+    flex-direction:column;
+
+}
+
+.updatebtn{
+    
+    border-radius: 5px;
+    background-color: #4CAF50;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 15px 2px 0px 2px;
+    cursor: pointer;
 }
