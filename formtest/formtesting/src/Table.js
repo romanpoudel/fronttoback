@@ -19,6 +19,8 @@ const customStyles = {
 export default function Table() {
   const [items, setItems] = useState([]);
   const [open, openModal] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const monthNames = [
     "January",
@@ -46,6 +48,13 @@ export default function Table() {
     fetchData();
   });
 
+  const selectUser = (id) => {
+    console.warn(items[id]);
+    let user = items[id];
+    setTitle(user.title);
+    setDescription(user.description);
+  };
+
   const fetchData = () => {
     fetch("http://localhost:8000/posts")
       .then((res) => res.json())
@@ -72,6 +81,11 @@ export default function Table() {
     fetchData();
   };
 
+  const trigger = (no) => {
+    selectUser(no);
+    openModal(true);
+  };
+
   return (
     <div className="table">
       <Modal
@@ -87,6 +101,7 @@ export default function Table() {
               className="input"
               type="text"
               name="title"
+              value={title}
               style={{ width: "347.7px" }}
             />
           </div>
@@ -96,6 +111,7 @@ export default function Table() {
               className="input"
               type="text"
               name="description"
+              value={description}
               style={{ width: "347.7px" }}
             />
           </div>
@@ -119,14 +135,14 @@ export default function Table() {
           </tr>
         </thead>
         <tbody>
-          {items.map((item) => (
+          {items.map((item, no) => (
             <tr>
               <th scope="row">{++a}</th>
               <td>{item.title}</td>
               <td>{item.description}</td>
               <td>{output}</td>
               <td>
-                <button className="edit" onClick={() => openModal(true)}>
+                <button className="edit" onClick={() => trigger(no)}>
                   <FontAwesomeIcon icon={faEdit} />
                 </button>
               </td>
