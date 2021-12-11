@@ -10,3 +10,9 @@
     text-transform: uppercase;
     text-decoration: underline;
 }
+
+.delete{
+    background-color:transparent;
+     color: #fff;
+    border: none; 
+}

@@ -3,6 +3,7 @@ import "./Table.css"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 
+
 export default function Table() {
     const [items, setItems] = useState([]);
 
@@ -18,18 +19,35 @@ let a = 0;
 
 
     useEffect(() => {
-        fetch("http://localhost:8000/posts")
-          .then(res => res.json())
-          .then(
-            (result) => {
-              setItems(result);
-            console.log(result);
-            },
-            (error) => {
-                console.log(error);
-              }
-          )
+       fetchData();
       })
+
+      const fetchData = () => {
+        fetch("http://localhost:8000/posts")
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setItems(result);
+          console.log(result);
+          },
+          (error) => {
+              console.log(error);
+            }
+        )
+      }
+     const handleDelete = (id) => {
+        fetch(`http://localhost:8000/posts/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            console.log(res);
+            window.location.reload();
+        })
+        fetchData();
+    }
+      
     return (
         <div className='table'>
             <text className="title">Input data from Database</text>
@@ -50,7 +68,7 @@ let a = 0;
       <td>{item.title}</td>
       <td>{item.description}</td>
       <td>{output}</td>
-      <td><FontAwesomeIcon icon={faTrashAlt} /></td>
+      <td><button className='delete' onClick={()=>handleDelete(item._id)}><FontAwesomeIcon icon={faTrashAlt} /></button></td>
     </tr>
       )}
   </tbody>
