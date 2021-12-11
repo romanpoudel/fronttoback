@@ -1,0 +1,12 @@
+.table{
+    border-collapse: collapse;
+    margin: 30px auto;
+    width: 85%;
+}
+.title{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: underline;
+}

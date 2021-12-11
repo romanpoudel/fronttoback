@@ -1,6 +1,8 @@
 .App {
   text-align: center;
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -36,4 +38,37 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.btn{
+  background-color: #1EA3F8;
+  color: white;
+  text-transform:uppercase;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 20px 2px;
+  cursor: pointer;
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  margin: 10px;
+  flex-direction: column;
+}
+
+.input{
+  width: 100%;
+  padding: 8px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  outline: none;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
 }

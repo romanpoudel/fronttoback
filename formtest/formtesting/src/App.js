@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
 // import {useHistory,useNavigate} from 'react-router-dom';
+import Table from "./Table";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
   name = e.target.name;
   value = e.target.value;
   setUser({...user,[name]:value});
+
   };
 
   const PostData = async(e) => {
@@ -34,33 +36,44 @@ function App() {
       console.log("Invalid Input");
     }
     else{
+     
       window.alert("Post Added");
       console.log("Post Added");
+      
 
       // history.push("/posts")
       // navigate("/posts")
     }
+    setUser({title:"",description:""});
   }
 
+  
   return (
     <div className="App">
-      <form >
+      <form id="create-course-form">
+        <div className="container">
         <label>
           Enter your title:
-          <input
+          <input className="input"
             type="text"
             name="title"
             value={user.title}
             onChange={handleInputs}
           />
         </label>
+        </div>
+        <div className="container" >
         <label>
           Enter description:
-          <input type="text" name="description" value={user.description}
+          <input className="input" type="text" name="description" value={user.description}
             onChange={handleInputs}/>
         </label>
-        <button onClick={PostData} >Submit</button>
+        </div>
+        <div className="container">
+        <button className="btn" onClick={PostData} >Submit</button>
+        </div>
       </form>
+      <Table />
     </div>
   );
 }
