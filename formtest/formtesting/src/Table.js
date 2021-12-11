@@ -21,6 +21,7 @@ export default function Table() {
   const [open, openModal] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [id, setId] = useState("");
 
   const monthNames = [
     "January",
@@ -48,9 +49,9 @@ export default function Table() {
     fetchData();
   });
 
-  const selectUser = (id) => {
-    console.warn(items[id]);
-    let user = items[id];
+  const selectUser = (no) => {
+    console.warn(items[no]);
+    let user = items[no];
     setTitle(user.title);
     setDescription(user.description);
   };
@@ -81,11 +82,30 @@ export default function Table() {
     fetchData();
   };
 
-  const trigger = (no) => {
+  const trigger = (no,id) => {
     selectUser(no);
+    setId(id);
     openModal(true);
   };
 
+  const updateUser=()=>{
+
+    fetch(`http://localhost:8000/posts/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({title,description}),
+    }).then((res) => {
+      res.json().then((resp)=>{
+        console.log(resp);
+        window.location.reload();
+        fetchData();
+      })
+    });
+
+  };
   return (
     <div className="table">
       <Modal
@@ -102,6 +122,7 @@ export default function Table() {
               type="text"
               name="title"
               value={title}
+              onChange={(e) => setTitle(e.target.value)}
               style={{ width: "347.7px" }}
             />
           </div>
@@ -112,12 +133,13 @@ export default function Table() {
               type="text"
               name="description"
               value={description}
+              onChange={(e) => setDescription(e.target.value)}
               style={{ width: "347.7px" }}
             />
           </div>
         </form>
 
-        <button className="updatebtn" onClick={() => openModal(false)}>
+        <button className="updatebtn" onClick={()=>updateUser()}>
           Update
         </button>
       </Modal>
@@ -142,7 +164,7 @@ export default function Table() {
               <td>{item.description}</td>
               <td>{output}</td>
               <td>
-                <button className="edit" onClick={() => trigger(no)}>
+                <button className="edit" onClick={() => trigger(no,item._id)}>
                   <FontAwesomeIcon icon={faEdit} />
                 </button>
               </td>
