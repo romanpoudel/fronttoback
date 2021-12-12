@@ -146,12 +146,12 @@ export default function Table() {
 
       <text className="title">Input data from Database</text>
       <table class="table table-bordered table-dark">
-        <thead>
+        <thead className="table-head">
           <tr>
             <th scope="col">S.N.</th>
-            <th scope="col">Title</th>
+            <th scope="col">Name</th>
             <th scope="col">Description</th>
-            <th scope="col">Input Date</th>
+            <th scope="col">Date</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>

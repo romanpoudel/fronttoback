@@ -16,6 +16,12 @@
      color: #fff;
     border: none; 
 }
+.delete:hover{
+    color:red;
+}
+.edit:hover{
+    color:#5E7CE2;
+}
 .modInput{
     display:flex;
     flex-direction:column;
@@ -35,4 +41,9 @@
     font-size: 16px;
     margin: 15px 2px 0px 2px;
     cursor: pointer;
+}
+.table-head{
+    background-color: #000000;
+    color: #fff;
+    font-weight: bold;
 }
